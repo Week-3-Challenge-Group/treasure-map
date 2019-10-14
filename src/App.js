@@ -8,17 +8,22 @@ class App extends Component {
       attemptsLeft: 5,
       board: ['?', '?', '?', '?', '?', '?', '?', '?', '?'],
       resultBoard: ['tree', 'tree', 'bomb', 'tree', 'treasure', 'tree', 'tree', 'tree', 'tree'],
-      guessed: []
+      won: false
     }
   }
   
   handleClick = (e) => {
     var guessCount = this.state.attemptsLeft - 1;
-    if (guessCount >= 0) {
-      var buttonIndex = e.target.id;
-      console.log(buttonIndex)
+    var buttonIndex = e.target.id;
+    if (guessCount >= 0 && this.state.won === false) {
+      
+      if(this.state.board[buttonIndex] === "treasure") {
+        this.state.board.splice(buttonIndex, 1, this.state.resultBoard[buttonIndex])
+        this.setState({board: this.state.board, attemptsLeft: guessCount, won: true})
+      } else {
       this.state.board.splice(buttonIndex, 1, this.state.resultBoard[buttonIndex])
       this.setState({board: this.state.board, attemptsLeft: guessCount})
+    }
     }
   }
     
@@ -38,6 +43,7 @@ class App extends Component {
         <button id = "7" onClick = {this.handleClick}>{this.state.board[7]}</button>
         <button id = "8" onClick = {this.handleClick}>{this.state.board[8]}</button>
         <p>{this.state.attemptsLeft}</p>
+        
       </div>
     );
   }
