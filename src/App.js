@@ -42,12 +42,12 @@ class App extends Component {
       <div>
         <button id="0" onClick={this.handleClick}>{this.state.board[0]} </button>
         <button id ="1" onClick = {this.handleClick}>{this.state.board[1]}</button>
-        <button id = "2" onClick = {this.handleClick}>Button 3</button>
-        <button id = "3" onClick = {this.handleClick}>Button 4</button>
-        <button id ="4" onClick = {this.handleClick}>Button 5</button>
-        <button id ="5" onClick = {this.handleClick}>Button 6</button>
-        <button id = "6" onClick = {this.handleClick}>Button 7</button>
-        <button id = "7" onClick = {this.handleClick}>Button 8</button>
+        <button id = "2" onClick = {this.handleClick}>{this.state.board[2]}</button>
+        <button id = "3" onClick = {this.handleClick}>{this.state.board[3]}</button>
+        <button id ="4" onClick = {this.handleClick}>{this.state.board[4]}</button>
+        <button id ="5" onClick = {this.handleClick}>{this.state.board[5]}</button>
+        <button id = "6" onClick = {this.handleClick}>{this.state.board[6]}</button>
+        <button id = "7" onClick = {this.handleClick}>{this.state.board[7]}</button>
         <button id = "8" onClick = {this.handleClick}>Button 9</button>
         <p>{this.state.attemptsLeft}</p>
       </div>
