@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-
 class App extends Component {
   constructor(props) {
     super(props)
@@ -8,27 +7,28 @@ class App extends Component {
       attemptsLeft: 5,
       board: ['?', '?', '?', '?', '?', '?', '?', '?', '?'],
       resultBoard: ['tree', 'tree', 'bomb', 'tree', 'treasure', 'tree', 'tree', 'tree', 'tree'],
-      won: false
+      won: 'Make a guess!'
     }
   }
   
   handleClick = (e) => {
     var guessCount = this.state.attemptsLeft - 1;
     var buttonIndex = e.target.id;
-    if (guessCount >= 0 && this.state.won === false) {
-      
-      if(this.state.board[buttonIndex] === "treasure") {
+    if (guessCount >= 0) {
+      if(this.state.resultBoard[buttonIndex] === "treasure") {
         this.state.board.splice(buttonIndex, 1, this.state.resultBoard[buttonIndex])
-        this.setState({board: this.state.board, attemptsLeft: guessCount, won: true})
+        this.setState({board: this.state.board, attemptsLeft: 0, won: 'You Won!'})
+        console.log(this.state.attemptsLeft)
+      } else if (this.state.resultBoard[buttonIndex] === "bomb" || guessCount === 0) {
+        this.state.board.splice(buttonIndex, 1, this.state.resultBoard[buttonIndex])
+        this.setState({board: this.state.board, attemptsLeft: 0, won: 'You Lost!'})
       } else {
-      this.state.board.splice(buttonIndex, 1, this.state.resultBoard[buttonIndex])
-      this.setState({board: this.state.board, attemptsLeft: guessCount})
-    }
+        this.state.board.splice(buttonIndex, 1, this.state.resultBoard[buttonIndex])
+        this.setState({board: this.state.board, attemptsLeft: guessCount, won: 'Keep Trying'})
+      }
     }
   }
     
-  
-  
   
   render() {
     return (
@@ -42,7 +42,8 @@ class App extends Component {
         <button id = "6" onClick = {this.handleClick}>{this.state.board[6]}</button>
         <button id = "7" onClick = {this.handleClick}>{this.state.board[7]}</button>
         <button id = "8" onClick = {this.handleClick}>{this.state.board[8]}</button>
-        <p>{this.state.attemptsLeft}</p>
+        <p>Attempts Left: {this.state.attemptsLeft}</p>
+        <p>{this.state.won}</p>
         
       </div>
     );
