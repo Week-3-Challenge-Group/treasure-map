@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import './App.css';
 
 class Grid extends Component {
     render() {
     return (
-      <div>
+      <div className ="grid">
          <button id="0" onClick={this.props.boxes}>{this.props.questionBoard[0]} </button>
         <button id ="1" onClick = {this.props.boxes}>{this.props.questionBoard[1]}</button>
         <button id = "2" onClick = {this.props.boxes}>{this.props.questionBoard[2]}</button>
@@ -19,20 +20,5 @@ class Grid extends Component {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export default Grid
