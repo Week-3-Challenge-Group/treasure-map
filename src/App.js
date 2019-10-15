@@ -28,6 +28,29 @@ class App extends Component {
       }
     }
   }
+  
+  startOver = () => {
+    //update board state
+     //resultBoard with special index defined with  Math.floor(Math.random() * 9)
+    
+    let newBoard = [];
+    for (let i = 0; i < this.state.resultBoard.length; i++) {
+      newBoard.push('tree');
+    }
+   
+    let treasureIndex
+    let bombIndex
+    do {
+      treasureIndex = Math.floor(Math.random()*9)
+      bombIndex = Math.floor(Math.random()*9)
+    } while (treasureIndex === bombIndex)
+    
+    this.state.resultBoard = newBoard
+    this.state.resultBoard.splice(treasureIndex,1,'treasure')
+    this.state.resultBoard.splice(bombIndex,1,'bomb')
+   
+    this.setState({resultBoard: this.state.resultBoard})
+  }
     
   
   render() {
@@ -44,6 +67,9 @@ class App extends Component {
         <button id = "8" onClick = {this.handleClick}>{this.state.board[8]}</button>
         <p>Attempts Left: {this.state.attemptsLeft}</p>
         <p>{this.state.won}</p>
+        <br/>
+        <button onClick = {this.startOver}>Play Again!</button>
+        
         
       </div>
     );
